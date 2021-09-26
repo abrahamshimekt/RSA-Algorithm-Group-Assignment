@@ -44,6 +44,7 @@ rsa_tuple = generate_prime()
 rsa_modulus = rsa_tuple[0] * rsa_tuple[1]
 oiler = (rsa_tuple[0] - 1) * (rsa_tuple[1] - 1)
 
+
 """
 This function returns the greatest common factor 
 of two numbers by using Euclidean algorithm
@@ -81,7 +82,6 @@ e = generate_public_key(e)
 This function generate a private key
 """
 
-
 def inverse():
     for d in range(1, oiler):
         if (d * e % oiler) == 1 % oiler:
@@ -101,11 +101,11 @@ def encrypt_message():
     global public_key
     message_list = []
     encrypted_list = []
-    for character in message:  # convert each character to a number by their ascii value and add to a list
+    for character in message:          # convert each character to a number by their ascii value and add to a list
         message_list.append(ord(character))
-    for item in message_list:  # encrypt each item of the list
+    for item in message_list:          # encrypt each item of the list
         if public_key == (generate_public_key(e), rsa_modulus):
-            encrypted_list.append(pow(item, public_key[0]) % public_key[1])  # m* =rem(pow(m,e),n) where m* is decrypted
+            encrypted_list.append(pow(item, public_key[0]) % public_key[1])     # m* =rem(pow(m,e),n) where m* is decrypted
         # message,m is original message,n is p*q
         else:
             public_key = eval(input("oops invalid key>>>plz try again!:"))
@@ -116,10 +116,10 @@ def encrypt_message():
 encrypted_message = "".join(str(item) for item in encrypt_message())
 print("your encrypted message is:", encrypted_message)
 secret_key = tuple(eval(input("enter your secret key to decrypt the message separated by comma:")))
+
 """
 This function decrypt a message to its original meaning
 """
-
 
 def decrypt_message():
     global secret_key
