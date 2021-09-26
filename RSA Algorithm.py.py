@@ -4,7 +4,7 @@ This is an RSA algorithm to encrypt
  """
 import random
 
-print("Hello Welcome to RSA Encryption algorithm")
+print("Hello Welcome to RSA Encryption Algorithm")
 print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
 """
