@@ -32,6 +32,7 @@ def generate_prime():
     q = random.randint(100, 1000)
     if is_prime(p) and is_prime(q):
         return p, q
+     
     else:
         while True:
             p = random.randint(100, 1000)
@@ -76,8 +77,8 @@ def generate_public_key(e):
     else:
         return e
 
-
 e = generate_public_key(e)
+
 """
 This function generate a private key
 """
@@ -90,22 +91,23 @@ def inverse():
 
 print("public key:", (generate_public_key(e), rsa_modulus))
 print("private key:", (inverse(), rsa_modulus))
-message = input("enter your message to encrypt:")
+message = input("enter the message to be encrypted:")
 public_key = eval(input("please enter your public key to encrypt your message separated by comma:"))
+
 """
 This function encrypts a message by using the ascii value
 """
-
 
 def encrypt_message():
     global public_key
     message_list = []
     encrypted_list = []
-    for character in message:          # convert each character to a number by their ascii value and add to a list
+    for character in message:             # convert each character to a number by their ascii value and add to a list
         message_list.append(ord(character))
-    for item in message_list:          # encrypt each item of the list
+    for item in message_list:              # encrypt each item of the list
         if public_key == (generate_public_key(e), rsa_modulus):
-            encrypted_list.append(pow(item, public_key[0]) % public_key[1])     # m* =rem(pow(m,e),n) where m* is decrypted
+            encrypted_list.append(pow(item, public_key[0]) % public_key[1])      # m* =rem(pow(m,e),n) where m* is decrypted
+        
         # message,m is original message,n is p*q
         else:
             public_key = eval(input("oops invalid key>>>plz try again!:"))
@@ -126,10 +128,11 @@ def decrypt_message():
     decrypted_list = []
     for item in encrypt_message():
         if secret_key ==(inverse(),rsa_modulus):
-            decrypted_list.append(pow(item, secret_key[0]) % secret_key[1])  # m= rem(pow(m*,d),n) where m is original
+            decrypted_list.append(pow(item, secret_key[0]) % secret_key[1])      # m= rem(pow(m*,d),n) where m is original
+        
         # message m* is decrypted message and n is p*q
         else:
-            secret_key= eval(input("oops invalid key>>>plz try again!:"))
+            secret_key= eval(input("oops invalid key>>>please try again!:"))
             decrypt_message()
     for i in range(len(decrypted_list)):
         decrypted_list[i] = chr(decrypted_list[i])
