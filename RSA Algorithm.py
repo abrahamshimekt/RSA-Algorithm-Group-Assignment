@@ -102,13 +102,13 @@ def encrypt_message():
     global public_key
     message_list = []
     encrypted_list = []
-    for character in message:             # convert each character to a number by their ascii value and add to a list
+    for character in message:           
         message_list.append(ord(character))
-    for item in message_list:              # encrypt each item of the list
+    for item in message_list:          
         if public_key == (generate_public_key(e), rsa_modulus):
-            encrypted_list.append(pow(item, public_key[0]) % public_key[1])      # m* =rem(pow(m,e),n) where m* is decrypted
-        
-        # message,m is original message,n is p*q
+            encrypted_list.append(pow(item, public_key[0]) % public_key[1])     
+        """ m* =rem(pow(m,e),n) where m* is decrypted message,m is original message,n is p*q
+        """
         else:
             public_key = eval(input("oops invalid key>>>plz try again!:"))
             encrypt_message()
