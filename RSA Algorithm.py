@@ -12,7 +12,6 @@ A function to check the inputs
  by the user if they are primes
  """
 
-
 def is_prime(number):
     factor = 0
     if number == 2:
@@ -25,7 +24,6 @@ def is_prime(number):
             return True
         else:
             return False
-
 
 def generate_prime():
     p = random.randint(100, 1000)
@@ -40,17 +38,14 @@ def generate_prime():
             if is_prime(p) and is_prime(q):
                 return p, q
 
-
 rsa_tuple = generate_prime()
 rsa_modulus = rsa_tuple[0] * rsa_tuple[1]
 oiler = (rsa_tuple[0] - 1) * (rsa_tuple[1] - 1)
-
 
 """
 This function returns the greatest common factor 
 of two numbers by using Euclidean algorithm
 """
-
 
 def gcd(num1, num2):
     if num2 == 0:
@@ -60,13 +55,11 @@ def gcd(num1, num2):
     else:
         return gcd(num2, num1 % num2)
 
-
 e = random.randint(100, 1000)
 
 """
 This function generates a public key for encryption
 """
-
 
 def generate_public_key(e):
     if gcd(e, oiler) != 1:
@@ -87,7 +80,6 @@ def inverse():
     for d in range(1, oiler):
         if (d * e % oiler) == 1 % oiler:
             return d
-
 
 print("public key:", (generate_public_key(e), rsa_modulus))
 print("private key:", (inverse(), rsa_modulus))
@@ -114,7 +106,6 @@ def encrypt_message():
             encrypt_message()
     return encrypted_list
 
-
 encrypted_message = "".join(str(item) for item in encrypt_message())
 print("your encrypted message is:", encrypted_message)
 secret_key = tuple(eval(input("enter your secret key to decrypt the message separated by comma:")))
@@ -122,7 +113,6 @@ secret_key = tuple(eval(input("enter your secret key to decrypt the message sepa
 """
 This function decrypt a message to its original meaning
 """
-
 def decrypt_message():
     global secret_key
     decrypted_list = []
